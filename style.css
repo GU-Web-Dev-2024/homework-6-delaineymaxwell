@@ -21,6 +21,18 @@ body {
     margin-bottom: 20px; 
 }
 
+.running {
+    background-color: #2890ec;
+}
+
+.paused{
+    background-color:#d61c70
+}
+
+.default {
+    background-color: #e2cff8; 
+}
+
 button {
     font-size: 16px;
     padding: 10px 15px;

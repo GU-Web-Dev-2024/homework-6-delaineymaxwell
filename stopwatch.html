@@ -13,57 +13,65 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function () {
-                var seconds = "00";
-                var tens = "00";
-                var $appendTens = $("#tens");
-                var $appendSeconds = $("#seconds");
-                var $buttonStart = $('#button-start');
-                var $buttonStop = $('#button-stop');
-                var $buttonReset = $('#button-reset');
-                var interval;
+            var seconds = "00";
+            var tens = "00";
+            var $appendTens = $("#tens");
+            var $appendSeconds = $("#seconds");
+            var $buttonStart = $('#button-start');
+            var $buttonStop = $('#button-stop');
+            var $buttonReset = $('#button-reset');
+            var $timer = $("#timer");
+            var interval;
 
-                $("#timer").addClass("timer-background");
-    
-                $buttonStart.on('click', function () {
-                    clearInterval(interval);
-                    interval = setInterval(startTimer, 10);
-                });
-    
-                $buttonStop.on('click', function () {
-                    clearInterval(interval);
-                });
-    
-                $buttonReset.on('click', function () {
-                    clearInterval(interval);
-                    tens = "00";
-                    seconds = "00";
-                    $appendTens.html(tens);
-                    $appendSeconds.html(seconds);
-                });
-    
-                function startTimer() {
-                    tens++;
-    
-                    if (tens < 9) {
-                        $appendTens.html("0" + tens);
-                    }
-    
-                    if (tens > 9) {
-                        $appendTens.html(tens);
-                    }
-    
-                    if (tens > 99) {
-                        seconds++;
-                        $appendSeconds.html("0" + seconds);
-                        tens = 0;
-                        $appendTens.html("0" + tens);
-                    }
-    
-                    if (seconds > 9) {
-                        $appendSeconds.html(seconds);
-                    }
-                }
+            // Set initial color
+            $timer.css("background-color", "#e2cff8");
+
+            $buttonStart.on('click', function () {
+                clearInterval(interval);
+                $timer.removeClass("paused").addClass("running");
+                $timer.css("background-color", "#2890ec"); // Set to running color
+                interval = setInterval(startTimer, 10);
             });
+
+            $buttonStop.on('click', function () {
+                clearInterval(interval);
+                $timer.removeClass("running").addClass("paused");
+                $timer.css("background-color", "#d61c70"); // Set to paused color
+            });
+
+            $buttonReset.on('click', function () {
+                clearInterval(interval);
+                tens = "00";
+                seconds = "00";
+                $appendTens.html(tens);
+                $appendSeconds.html(seconds);
+                $timer.removeClass("running paused");
+                $timer.css("background-color", "#e2cff8"); // Reset to default color
+            });
+
+            function startTimer() {
+                tens++;
+
+                if (tens < 9) {
+                    $appendTens.html("0" + tens);
+                }
+
+                if (tens > 9) {
+                    $appendTens.html(tens);
+                }
+
+                if (tens > 99) {
+                    seconds++;
+                    $appendSeconds.html("0" + seconds);
+                    tens = 0;
+                    $appendTens.html("0" + tens);
+                }
+
+                if (seconds > 9) {
+                    $appendSeconds.html(seconds);
+                }
+            }
+        });
         </script>
     </head>
     
