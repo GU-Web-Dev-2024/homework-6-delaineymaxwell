@@ -26,7 +26,7 @@
                 // Set initial styles using jQuery
                 $('body').css({
                     fontFamily: "Monaco, monospace",
-                    backgroundColor: "#f4f4f4",
+                    backgroundColor: "#ebe8fc",
                     color: "#333",
                     textAlign: "center"
                 });
@@ -37,7 +37,7 @@
                     margin: "50px auto",
                     padding: "20px",
                     borderRadius: "10px",
-                    backgroundColor: "#fff",
+                    backgroundColor: "#FED8B1",
                     color: "#4B006E",
                     maxWidth: "300px",
                     border: "5px solid #4B006E"
@@ -102,7 +102,7 @@
                     clearInterval(interval);
                     clearInterval(opacityInterval);
                     $timer.removeClass("paused").addClass("running");
-                    $timer.css("background-color", "#7be382"); 
+                    $timer.css("background-color", "#38cb82"); 
                     interval = setInterval(startTimer, 10);
                     startOpacityAnimation();
                 });
@@ -111,7 +111,7 @@
                     clearInterval(interval);
                     clearInterval(opacityInterval);
                     $timer.removeClass("running").addClass("paused");
-                    $timer.css("background-color", "#FAC898"); 
+                    $timer.css("background-color", "#FEA64B"); 
                     $timer.css("opacity", 1.0); // Reset opacity
                 });
     
