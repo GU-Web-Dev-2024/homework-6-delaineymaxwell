@@ -21,6 +21,7 @@
                 var $buttonReset = $('#button-reset');
                 var $timer = $("#timer");
                 var interval;
+                var opacityInterval;
     
                 // Set initial styles using jQuery
                 $('body').css({
@@ -43,7 +44,8 @@
                     fontWeight: "bold",
                     backgroundColor: "#e2cff8",
                     padding: "20px",
-                    marginBottom: "20px"
+                    marginBottom: "20px",
+                    opacity: 1.0
                 });
     
                 $timer.css("background-color", "#e2cff8"); // Default color
@@ -91,25 +93,31 @@
     
                 $buttonStart.on('click', function () {
                     clearInterval(interval);
+                    clearInterval(opacityInterval);
                     $timer.removeClass("paused").addClass("running");
-                    $timer.css("background-color", "#2890ec"); // Set to running color
+                    $timer.css("background-color", "#2890ec"); 
                     interval = setInterval(startTimer, 10);
+                    startOpacityAnimation();
                 });
     
                 $buttonStop.on('click', function () {
                     clearInterval(interval);
+                    clearInterval(opacityInterval);
                     $timer.removeClass("running").addClass("paused");
-                    $timer.css("background-color", "#d61c70"); // Set to paused color
+                    $timer.css("background-color", "#d61c70"); 
+                    $timer.css("opacity", 1.0); // Reset opacity
                 });
     
                 $buttonReset.on('click', function () {
                     clearInterval(interval);
+                    clearInterval(opacityInterval);
                     tens = "00";
                     seconds = "00";
                     $appendTens.html(tens);
                     $appendSeconds.html(seconds);
                     $timer.removeClass("running paused");
-                    $timer.css("background-color", "#e2cff8"); // Reset to default color
+                    $timer.css("background-color", "#e2cff8"); 
+                    $timer.css("opacity", 1.0); // Reset opacity
                 });
     
                 function startTimer() {
@@ -133,6 +141,13 @@
                     if (seconds > 9) {
                         $appendSeconds.html(seconds);
                     }
+                }
+
+                function startOpacityAnimation() {
+                    opacityInterval = setInterval(function () {
+                        $timer.animate({ opacity: 0.8 }, 500)
+                              .animate({ opacity: 1.0 }, 500);
+                    }, 1000); 
                 }
             });
         </script>
