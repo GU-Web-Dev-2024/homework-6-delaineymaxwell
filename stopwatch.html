@@ -25,21 +25,25 @@
     
                 // Set initial styles using jQuery
                 $('body').css({
-                    fontFamily: "Arial, sans-serif",
+                    fontFamily: "Monaco, monospace",
                     backgroundColor: "#f4f4f4",
                     color: "#333",
                     textAlign: "center"
                 });
     
                 $(".wrapper").css({
+                    fontFamily: "Monaco, monospace",
+                    fontWeight: "bold",
                     margin: "50px auto",
                     padding: "20px",
                     borderRadius: "10px",
                     backgroundColor: "#fff",
+                    color: "#4B006E",
                     maxWidth: "300px"
                 });
     
                 $timer.css({
+                    fontFamily: "Monaco, monospace",
                     fontSize: "48px",
                     fontWeight: "bold",
                     backgroundColor: "#e2cff8",
@@ -57,6 +61,7 @@
     
                 // Define button styles in a single object literal
                 var buttonStyles = {
+                    fontFamily: "Monaco, monospace",
                     fontSize: "16px",
                     padding: "10px 15px",
                     margin: "5px",
@@ -95,7 +100,7 @@
                     clearInterval(interval);
                     clearInterval(opacityInterval);
                     $timer.removeClass("paused").addClass("running");
-                    $timer.css("background-color", "#2890ec"); 
+                    $timer.css("background-color", "#7be382"); 
                     interval = setInterval(startTimer, 10);
                     startOpacityAnimation();
                 });
@@ -104,7 +109,7 @@
                     clearInterval(interval);
                     clearInterval(opacityInterval);
                     $timer.removeClass("running").addClass("paused");
-                    $timer.css("background-color", "#d61c70"); 
+                    $timer.css("background-color", "#FAC898"); 
                     $timer.css("opacity", 1.0); // Reset opacity
                 });
     
@@ -157,9 +162,9 @@
         <div class="wrapper">
             <h1> JQuery Stopwatch</h1>
             <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
-            <button id="button-start">Start</button>
-            <button id="button-stop">Stop</button>
-            <button id="button-reset">Reset</button>
+            <button id="button-start">START</button>
+            <button id="button-stop">STOP</button>
+            <button id="button-reset">RESET</button>
         </div>
     </body>
     
