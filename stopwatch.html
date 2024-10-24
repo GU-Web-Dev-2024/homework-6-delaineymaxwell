@@ -9,82 +9,144 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HW6 - JQuery</title>
-        <link rel="stylesheet" href="style.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function () {
-            var seconds = "00";
-            var tens = "00";
-            var $appendTens = $("#tens");
-            var $appendSeconds = $("#seconds");
-            var $buttonStart = $('#button-start');
-            var $buttonStop = $('#button-stop');
-            var $buttonReset = $('#button-reset');
-            var $timer = $("#timer");
-            var interval;
-
-            // Set initial color
-            $timer.css("background-color", "#e2cff8");
-
-            $buttonStart.on('click', function () {
-                clearInterval(interval);
-                $timer.removeClass("paused").addClass("running");
-                $timer.css("background-color", "#2890ec"); // Set to running color
-                interval = setInterval(startTimer, 10);
-            });
-
-            $buttonStop.on('click', function () {
-                clearInterval(interval);
-                $timer.removeClass("running").addClass("paused");
-                $timer.css("background-color", "#d61c70"); // Set to paused color
-            });
-
-            $buttonReset.on('click', function () {
-                clearInterval(interval);
-                tens = "00";
-                seconds = "00";
-                $appendTens.html(tens);
-                $appendSeconds.html(seconds);
-                $timer.removeClass("running paused");
-                $timer.css("background-color", "#e2cff8"); // Reset to default color
-            });
-
-            function startTimer() {
-                tens++;
-
-                if (tens < 9) {
-                    $appendTens.html("0" + tens);
-                }
-
-                if (tens > 9) {
+                var seconds = "00";
+                var tens = "00";
+                var $appendTens = $("#tens");
+                var $appendSeconds = $("#seconds");
+                var $buttonStart = $('#button-start');
+                var $buttonStop = $('#button-stop');
+                var $buttonReset = $('#button-reset');
+                var $timer = $("#timer");
+                var interval;
+    
+                // Set initial styles using jQuery
+                $('body').css({
+                    fontFamily: "Arial, sans-serif",
+                    backgroundColor: "#f4f4f4",
+                    color: "#333",
+                    textAlign: "center"
+                });
+    
+                $(".wrapper").css({
+                    margin: "50px auto",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    backgroundColor: "#fff",
+                    maxWidth: "300px"
+                });
+    
+                $timer.css({
+                    fontSize: "48px",
+                    fontWeight: "bold",
+                    backgroundColor: "#e2cff8",
+                    padding: "20px",
+                    marginBottom: "20px"
+                });
+    
+                $timer.css("background-color", "#e2cff8"); // Default color
+    
+                // Add classes to buttons
+                $buttonStart.addClass('btn start');
+                $buttonStop.addClass('btn stop');
+                $buttonReset.addClass('btn reset');
+    
+                // Define button styles in a single object literal
+                var buttonStyles = {
+                    fontSize: "16px",
+                    padding: "10px 15px",
+                    margin: "5px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    backgroundColor: "#c080f8",
+                    color: "white",
+                    transition: "background-color 0.3s"
+                };
+    
+                // Apply styles to all buttons
+                $buttonStart.css($.extend({}, buttonStyles));
+                $buttonStop.css($.extend({}, buttonStyles));
+                $buttonReset.css($.extend({}, buttonStyles));
+    
+                $buttonStart.hover(function () {
+                    $(this).css("background-color", "#7f3ea3");
+                }, function () {
+                    $(this).css("background-color", "#c080f8");
+                });
+    
+                $buttonStop.hover(function () {
+                    $(this).css("background-color", "#7f3ea3");
+                }, function () {
+                    $(this).css("background-color", "#c080f8");
+                });
+    
+                $buttonReset.hover(function () {
+                    $(this).css("background-color", "#7f3ea3");
+                }, function () {
+                    $(this).css("background-color", "#c080f8");
+                });
+    
+                $buttonStart.on('click', function () {
+                    clearInterval(interval);
+                    $timer.removeClass("paused").addClass("running");
+                    $timer.css("background-color", "#2890ec"); // Set to running color
+                    interval = setInterval(startTimer, 10);
+                });
+    
+                $buttonStop.on('click', function () {
+                    clearInterval(interval);
+                    $timer.removeClass("running").addClass("paused");
+                    $timer.css("background-color", "#d61c70"); // Set to paused color
+                });
+    
+                $buttonReset.on('click', function () {
+                    clearInterval(interval);
+                    tens = "00";
+                    seconds = "00";
                     $appendTens.html(tens);
-                }
-
-                if (tens > 99) {
-                    seconds++;
-                    $appendSeconds.html("0" + seconds);
-                    tens = 0;
-                    $appendTens.html("0" + tens);
-                }
-
-                if (seconds > 9) {
                     $appendSeconds.html(seconds);
+                    $timer.removeClass("running paused");
+                    $timer.css("background-color", "#e2cff8"); // Reset to default color
+                });
+    
+                function startTimer() {
+                    tens++;
+    
+                    if (tens < 9) {
+                        $appendTens.html("0" + tens);
+                    }
+    
+                    if (tens > 9) {
+                        $appendTens.html(tens);
+                    }
+    
+                    if (tens > 99) {
+                        seconds++;
+                        $appendSeconds.html("0" + seconds);
+                        tens = 0;
+                        $appendTens.html("0" + tens);
+                    }
+    
+                    if (seconds > 9) {
+                        $appendSeconds.html(seconds);
+                    }
                 }
-            }
-        });
+            });
         </script>
     </head>
     
     <body>
         <div class="wrapper">
-            <h1>Stopwatch</h1>
-            <h2>Vanilla JavaScript Stopwatch</h2>
-            <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p> 
+            <h1> JQuery Stopwatch</h1>
+            <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
             <button id="button-start">Start</button>
             <button id="button-stop">Stop</button>
             <button id="button-reset">Reset</button>
         </div>
     </body>
     
-    </html>
+    </html>    
     
